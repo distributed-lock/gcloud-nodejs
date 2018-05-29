@@ -1,0 +1,29 @@
+{
+  "name": "@distributedlock/gcloud",
+  "version": "0.0.0-alpha.0",
+  "description": "NodeJS Distributed lock which uses Google Cloud Datastore for storage",
+  "scripts": {
+    "test": "standard --fix && jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/distributedlock/gcloud-nodejs.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/distributedlock/gcloud-nodejs/issues"
+  },
+  "main": "lib",
+  "dependencies": {
+    "@google-cloud/datastore": "^1.4.0"
+  },
+  "standard": {
+    "envs": [
+      "jest"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^22.4.3",
+    "standard": "^11.0.1"
+  }
+}

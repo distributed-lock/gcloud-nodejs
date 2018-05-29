@@ -1,0 +1,34 @@
+name: build
+description: runs ops necessary to go from src to vetted artifact(s)
+inputs:
+  gitBranch:
+    string:
+      constraints: { minLength: 1 }
+      description: git branch coverage should be associated with
+      default: master
+  srcDir:
+    dir:
+      description: dir containing the projects source code
+      default: .
+outputs:
+  srcDir:
+    dir:
+      description: dir containing the projects source code
+opspec: 0.1.6
+run:
+  serial:
+    - op:
+        pkg: { ref: test }
+        inputs: { srcDir }
+        outputs: { srcDir, coverageReport }
+    - op:
+        pkg: { ref: github.com/opspec-pkgs/git.repo.resolve-commit#1.0.2 }
+        inputs: { dotGitDir: $(srcDir/.git) }
+        outputs: { gitCommit: commit }
+    - op:
+        pkg: { ref: github.com/opspec-pkgs/codecov.upload#1.1.0 }
+        inputs:
+          gitBranch:
+          gitCommit:
+          token: b0069607-08a6-4af5-b498-6435a0ecf4d5
+          report: $(coverageReport)

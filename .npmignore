@@ -1,0 +1,9 @@
+.opspec/
+coverage/
+jest*/
+*.test.js
+.editorconfig
+.travis.yml
+CODEOWNERS
+CONTRIBUTING.md
+jest.config.js
